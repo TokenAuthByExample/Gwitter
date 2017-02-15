@@ -8,6 +8,8 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 
 from rest_framework.authtoken.models import Token
+import pytz
+import datetime
 
 class User(AbstractUser):
     pass
@@ -36,3 +38,12 @@ def create_tokens():
     for user in users:
         token, created = Token.objects.get_or_create(user=user)
         print user.username, token.key
+
+def token_expired(token):
+    utc_now = datetime.datetime.utcnow()
+    utc_now = utc_now.replace(tzinfo=pytz.utc)
+
+    if token.created < utc_now - settings.TOKEN_EXPIRE_TIME:
+        return True
+    else:
+        return False

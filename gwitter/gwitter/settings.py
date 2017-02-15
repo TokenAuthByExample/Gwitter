@@ -107,13 +107,16 @@ AUTH_USER_MODEL = "token_auth.User"
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
+        'token_auth.authentication.ExpiringTokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
     'PAGE_SIZE': 10
 }
+
+import datetime
+TOKEN_EXPIRE_TIME=datetime.timedelta(days=14)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
