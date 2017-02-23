@@ -12,7 +12,6 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
-var http_2 = require('@angular/http');
 var app_routing_module_1 = require('./app-routing.module');
 var app_component_1 = require('./app.component');
 var gweets_component_1 = require('./gweets.component');
@@ -26,7 +25,6 @@ var AppModule = (function () {
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 http_1.HttpModule,
-                http_2.JsonpModule,
                 app_routing_module_1.AppRoutingModule
             ],
             declarations: [

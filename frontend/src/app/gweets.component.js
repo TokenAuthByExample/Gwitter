@@ -16,7 +16,7 @@ var GweetsComponent = (function () {
         this.router = router;
         this.gweetService = gweetService;
         this.currentText = '';
-        this.charsLeft = 140;
+        this.charsLeft = "140";
         this.title = "Gwitter";
     }
     GweetsComponent.prototype.getGweets = function () {
@@ -34,6 +34,7 @@ var GweetsComponent = (function () {
         this.gweetService.create(currentText)
             .then(function (gweet) {
             _this.getGweets();
+            _this.currentText = "";
         });
     };
     GweetsComponent.prototype.login = function (email, password) {
@@ -46,7 +47,7 @@ var GweetsComponent = (function () {
         this.router.navigate(['/gweet', gweet.id]);
     };
     GweetsComponent.prototype.changed = function () {
-        this.charsLeft = 140 - this.currentText.length;
+        this.charsLeft = (140 - this.currentText.length).toString();
     };
     GweetsComponent = __decorate([
         core_1.Component({

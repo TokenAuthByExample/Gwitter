@@ -13,9 +13,8 @@ var http_1 = require('@angular/http');
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/toPromise');
 var GweetService = (function () {
-    function GweetService(http, jsonp) {
+    function GweetService(http) {
         this.http = http;
-        this.jsonp = jsonp;
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         this.gweetsUrl = 'http://localhost:8000/gweets/';
         this.usersUrl = 'http://localhost:8000/get_auth_token/';
@@ -23,15 +22,15 @@ var GweetService = (function () {
         this.user = "";
     }
     GweetService.prototype.getGweets = function () {
-        return this.jsonp
-            .get(this.gweetsUrl + "?format=jsonp&callback=JSONP_CALLBACK")
+        return this.http
+            .get("" + this.gweetsUrl)
             .toPromise()
             .then(function (response) { return response.json().results; })
             .catch(this.handleError);
     };
     GweetService.prototype.getGweet = function (id) {
-        var url = "" + this.gweetsUrl + id + "/?format=jsonp&callback=JSONP_CALLBACK";
-        return this.jsonp
+        var url = "" + this.gweetsUrl + id + "/";
+        return this.http
             .get(url)
             .toPromise()
             .then(function (response) { return response.json(); })
@@ -61,7 +60,7 @@ var GweetService = (function () {
     };
     GweetService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http, http_1.Jsonp])
+        __metadata('design:paramtypes', [http_1.Http])
     ], GweetService);
     return GweetService;
 }());

@@ -1,5 +1,5 @@
 import { Injectable }           from '@angular/core';
-import { Http, Headers, Jsonp, URLSearchParams } from '@angular/http';
+import { Http, Headers, URLSearchParams } from '@angular/http';
 import { Gweet } from './gweet';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
@@ -14,20 +14,19 @@ export class GweetService {
   public token = "";
   private user = "";
 
-  constructor(private http: Http,
-              private jsonp: Jsonp) { }
+  constructor(private http: Http) { }
 
   getGweets() {
-    return this.jsonp
-               .get(`${this.gweetsUrl}?format=jsonp&callback=JSONP_CALLBACK`)
+    return this.http
+               .get(`${this.gweetsUrl}`)
                .toPromise()
                .then((response) => response.json().results)
                .catch(this.handleError);
   }
 
   getGweet(id: number): Promise<Gweet> {
-    const url = `${this.gweetsUrl}${id}/?format=jsonp&callback=JSONP_CALLBACK`;
-    return this.jsonp
+    const url = `${this.gweetsUrl}${id}/`;
+    return this.http
                .get(url)
                .toPromise()
                .then((response) => response.json() as Gweet)

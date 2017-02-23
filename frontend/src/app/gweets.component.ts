@@ -16,7 +16,7 @@ export class GweetsComponent implements OnInit {
   errorMessage: string;
   gweets: Array<Gweet[]>;
   public currentText: string = '';
-  public charsLeft: string = 140;
+  public charsLeft: string = "140";
 
   title = "Gwitter";
 
@@ -36,6 +36,7 @@ export class GweetsComponent implements OnInit {
     this.gweetService.create(currentText)
         .then(gweet => {
           this.getGweets();
+          this.currentText = "";
         });
   }
 
@@ -52,6 +53,6 @@ export class GweetsComponent implements OnInit {
   }
 
   changed() {
-    this.charsLeft = 140 - this.currentText.length;
+    this.charsLeft = (140 - this.currentText.length).toString();
   }
 }
