@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'token_auth',
-    'gweets'
+    'gweets',
 ]
 
 MIDDLEWARE = [
@@ -105,9 +106,17 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTH_USER_MODEL = "token_auth.User"
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'token_auth.authentication.ExpiringTokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
     'PAGE_SIZE': 10
 }
+
+import datetime
+TOKEN_EXPIRE_TIME=datetime.timedelta(days=14)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/

@@ -9,5 +9,6 @@ router.register(r'gweets', gweet_views.GweetViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^get_auth_token/$', auth_views.obtain_expiring_auth_token, name='get_auth_token'),
 ]
