@@ -1,0 +1,80 @@
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">{{title}}</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a routerLink="/gweets" routerLinkActive="active">Home</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
+					<ul id="login-dp" class="dropdown-menu">
+						<li>
+						<div class="row">
+								<div class="col-md-12 col-sm-12">
+									<div class="form-group">
+										 <label class="sr-only" for="exampleInputEmail2">Email address</label>
+										 <input #email type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+									</div>
+									<div class="form-group">
+										 <label class="sr-only" for="exampleInputPassword2">Password</label>
+										 <input #password type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+									</div>
+									<div class="form-group">
+										 <button (click)="login(email.value, password.value)"
+														 class="btn btn-primary btn-block">Sign in</button>
+									</div>
+								</div>
+						 </div>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+</nav>
+<hr />
+<div class="container" *ngIf="gweetService.token != ''">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 well" style="padding-bottom:10px">
+      <div class="form-group">
+        <textarea [(ngModel)]=currentText (keypress)="changed()" class="col-md-12 col-sm-12" id="new_message" name="new_message"
+                  placeholder="Type in your message" rows="5"></textarea>
+      </div>
+      <div class="form-group">
+        <button (click)="postGweet()" class="btn btn-info" type="submit">Post New Message</button>
+      </div>
+
+      <h6 class="pull-right">
+        <span id="characters_remaining">{{ charsLeft }}</span> characters remaining
+      </h6>
+    </div>
+	</div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="gweet" *ngFor="let gweet of gweets"
+                        (click)="gotoDetail(gweet)">
+        <div class="gweet-username">
+          <span>@{{gweet.username}}</span>
+        </div>
+        <div class="gweet-text">
+          <span class="gweet-text">{{gweet.text}}</span>
+        </div>
+        <hr />
+      </div>
+    </div>
+  </div>
+</div>
