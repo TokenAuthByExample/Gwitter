@@ -25,15 +25,6 @@ export class GweetService {
                .catch(this.handleError);
   }
 
-  getGweet(id: number): Promise<Gweet> {
-    const url = `${this.gweetsUrl}${id}/?format=jsonp&callback=JSONP_CALLBACK`;
-    return this.jsonp
-               .get(url)
-               .toPromise()
-               .then((response) => response.json() as Gweet)
-               .catch(this.handleError);
-  }
-
   create(post: string): Promise<Gweet> {
     var auth_headers = this.headers;
     auth_headers.append("Authorization", `Token ${this.token}`);

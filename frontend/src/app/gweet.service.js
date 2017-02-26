@@ -8,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-require('rxjs/add/operator/map');
-require('rxjs/add/operator/toPromise');
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+require("rxjs/add/operator/map");
+require("rxjs/add/operator/toPromise");
 var GweetService = (function () {
     function GweetService(http, jsonp) {
         this.http = http;
@@ -27,14 +27,6 @@ var GweetService = (function () {
             .get(this.gweetsUrl + "?format=jsonp&callback=JSONP_CALLBACK")
             .toPromise()
             .then(function (response) { return response.json().results; })
-            .catch(this.handleError);
-    };
-    GweetService.prototype.getGweet = function (id) {
-        var url = "" + this.gweetsUrl + id + "/?format=jsonp&callback=JSONP_CALLBACK";
-        return this.jsonp
-            .get(url)
-            .toPromise()
-            .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     GweetService.prototype.create = function (post) {
@@ -59,11 +51,12 @@ var GweetService = (function () {
         console.error("An error occurred", error);
         return Promise.reject(error.message || error);
     };
-    GweetService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http, http_1.Jsonp])
-    ], GweetService);
     return GweetService;
 }());
+GweetService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http,
+        http_1.Jsonp])
+], GweetService);
 exports.GweetService = GweetService;
 //# sourceMappingURL=gweet.service.js.map
