@@ -18,7 +18,7 @@ class User(AbstractUser):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         # Create a UserProfile for this user
-        UserProfile.objects.create(user=self)
+        UserProfile.objects.create(user=instance)
         # Create a Token for this new user
         Token.objects.create(user=instance)
 
