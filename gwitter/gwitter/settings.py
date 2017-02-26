@@ -54,11 +54,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_WHITELIST = (
-    "127.0.0.1:3000",
-    "localhost:3000"
-)
-
 ROOT_URLCONF = 'gwitter.urls'
 
 TEMPLATES = [
