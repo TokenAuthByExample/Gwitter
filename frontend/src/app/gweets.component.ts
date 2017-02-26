@@ -47,10 +47,6 @@ export class GweetsComponent implements OnInit {
     this.getGweets();
   }
 
-  gotoDetail(gweet: Gweet): void {
-    this.router.navigate(['/gweet', gweet.id]);
-  }
-
   changed() {
     this.charsLeft = 140 - this.currentText.length;
   }
