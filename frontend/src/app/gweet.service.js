@@ -19,7 +19,6 @@ var GweetService = (function () {
         this.gweetsUrl = 'http://localhost:8000/gweets/';
         this.usersUrl = 'http://localhost:8000/get_auth_token/';
         this.token = "";
-        this.user = "";
     }
     GweetService.prototype.getGweets = function () {
         return this.http
@@ -31,8 +30,9 @@ var GweetService = (function () {
     GweetService.prototype.create = function (post) {
         var auth_headers = this.headers;
         auth_headers.append("Authorization", "Token " + this.token);
+        console.log(auth_headers);
         return this.http
-            .post(this.gweetsUrl, JSON.stringify({ text: post, user: this.user }), { headers: auth_headers })
+            .post("" + this.gweetsUrl, JSON.stringify({ text: post }), { headers: auth_headers })
             .toPromise()
             .then(function (res) { return res.json().data; })
             .catch(this.handleError);

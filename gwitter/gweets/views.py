@@ -20,7 +20,7 @@ class GweetViewSet(viewsets.ModelViewSet):
             return [permission() for permission in self.permission_classes]
 
     def create(self, request):
-        user = User.objects.get(username=request.data.get('user'))
+        user = User.objects.get(username=request.user.username)
         request.data['user'] = user.id
         serializer = GweetSerializer(data=request.data)
 

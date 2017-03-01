@@ -23,3 +23,7 @@ class CorsMiddleware(MiddlewareMixin):
         response[ACCESS_CONTROL_ALLOW_ORIGIN] = "http://localhost:3000"
         response[ACCESS_CONTROL_ALLOW_HEADERS] = ', '.join(default_headers)
         return response
+
+    def process_request(self, request):
+        if (request.method == 'OPTIONS' and 'HTTP_ACCESS_CONTROL_REQUEST_METHOD' in request.META):
+            return http.HttpResponse()
