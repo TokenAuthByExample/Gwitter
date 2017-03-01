@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var gweet_service_1 = require("./gweet.service");
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var gweet_service_1 = require('./gweet.service');
 var GweetsComponent = (function () {
     function GweetsComponent(router, gweetService) {
         this.router = router;
@@ -45,17 +45,16 @@ var GweetsComponent = (function () {
     GweetsComponent.prototype.changed = function () {
         this.charsLeft = 140 - this.currentText.length;
     };
+    GweetsComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'my-gweets',
+            templateUrl: './gweets.component.html',
+            styleUrls: ['./gweets.component.css']
+        }), 
+        __metadata('design:paramtypes', [router_1.Router, gweet_service_1.GweetService])
+    ], GweetsComponent);
     return GweetsComponent;
 }());
-GweetsComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'my-gweets',
-        templateUrl: './gweets.component.html',
-        styleUrls: ['./gweets.component.css']
-    }),
-    __metadata("design:paramtypes", [router_1.Router,
-        gweet_service_1.GweetService])
-], GweetsComponent);
 exports.GweetsComponent = GweetsComponent;
 //# sourceMappingURL=gweets.component.js.map
