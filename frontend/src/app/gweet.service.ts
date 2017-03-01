@@ -12,7 +12,6 @@ export class GweetService {
   private usersUrl  = 'http://localhost:8000/get_auth_token/';
 
   public token = "";
-  private user = "";
 
   constructor(private http: Http,
               private jsonp: Jsonp) { }
@@ -29,7 +28,7 @@ export class GweetService {
     var auth_headers = this.headers;
     auth_headers.append("Authorization", `Token ${this.token}`);
     return this.http
-               .post(this.gweetsUrl, JSON.stringify({text: post, user: this.user}), {headers: auth_headers})
+               .post(this.gweetsUrl, JSON.stringify({text: post}), {headers: auth_headers})
                .toPromise()
                .then(res => res.json().data)
                .catch(this.handleError);
