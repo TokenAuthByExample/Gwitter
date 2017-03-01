@@ -44,7 +44,6 @@ var GweetService = (function () {
             .toPromise()
             .then(function (res) { return _this.token = res.json().token; })
             .catch(this.handleError);
-        this.user = username;
     };
     GweetService.prototype.handleError = function (error) {
         console.error("An error occurred", error);

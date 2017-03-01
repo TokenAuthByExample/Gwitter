@@ -40,7 +40,6 @@ export class GweetService {
         .toPromise()
         .then(res => this.token = res.json().token)
         .catch(this.handleError);
-    this.user = username;
   }
 
   private handleError(error: any): Promise<any> {
